@@ -26,10 +26,10 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { DataTable } from "@/components/ui/dataTable";
 import { ColumnDef } from "@tanstack/react-table";
-import dotenv from "dotenv";
+
 
 export default function Client() {
-  dotenv.config();
+
   const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
   const [dataLink, setDataLink] = useState<
@@ -91,10 +91,22 @@ export default function Client() {
       header: "Shorta",
       cell: ({ row }) => {
         const names = String(row.getValue("shorta"));
-
+        const link = `${process.env.NEXT_PUBLIC_DOMAIN}/${names}`;
         return (
           <div className={`flex truncate max-w-60`}>
-            <div className="">https://{names}</div>
+            <div
+              className=""
+              onClick={() => {
+                navigator.clipboard.writeText(link);
+                toast.success("Success ", {
+                  description:
+                    `the link has been copied ` +
+                    `${process.env.NEXT_PUBLIC_DOMAIN}/${names}`,
+                });
+              }}
+            >
+              {link}
+            </div>
           </div>
         );
       },
@@ -104,10 +116,20 @@ export default function Client() {
       header: () => <p className="text-start">Original</p>,
       cell: ({ row }) => {
         const names = String(row.getValue("original"));
-
         return (
           <div className={`flex truncate max-w-60`}>
-            <div className="">{names}</div>
+            <div
+              className=""
+              onClick={() => {
+                navigator.clipboard.writeText(names);
+                toast.success("Success ", {
+                  description:
+                    `the link has been copied `,
+                });
+              }}
+            >
+              {names}
+            </div>
           </div>
         );
       },

@@ -23,14 +23,26 @@ export async function POST(req: NextRequest) {
                 { status: 400 }
             )
         };
-
+        const sortLink = await nanoid(6)
         const shorta = await prisma.link.create({
             data: {
                 original: data.original,
-                shorta: nanoid(6),
+                shorta: sortLink,
                 owner: data.author
             }
         });
+     /*    const user = await prisma.user.update({
+            where: {
+                uuid: session.user.uuid
+            },
+            data: {
+                link: {
+                    [
+                        sortLink
+                    ]
+            }
+            }
+        }) */
         if (!shorta) {
             return NextResponse.json(
                 { message: "The link could not be processed, try again." },
@@ -52,18 +64,24 @@ export async function POST(req: NextRequest) {
 export async function GET() {
     try {
         const session = await auth()
-        const link = await prisma.link.findMany({
+        console.log(session?.user.uuid)
+        const link = await prisma.user.findUnique({
             where: {
-                owner: session?.user.uuid
+                uuid: session?.user.uuid
             },
             select: {
+                owner: true,
                 shorta: true,
                 uuid: true,
                 original: true,
-            }
-        })
+            },
+        });
 
-        return NextResponse.json(link);
+        return NextResponse.json(
+            { link },
+            { status: 200 }
+        );
+        return NextResponse;
     } catch (error) {
         return NextResponse.json(
             { error: "Failed to fetch user" + error },
