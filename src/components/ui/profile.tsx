@@ -62,11 +62,11 @@ export default function Profile() {
         <div>{session.user.email}</div>
         <DropdownMenuSeparator className="w-full" />
         {session.user.role == "Owner_shorta" ? (
-         <DropdownMenuItem className="w-full flex justify-center">
-          DashBoard
-        </DropdownMenuItem>
+          <Link href="/admin/dashboard" className="w-full bg-black+">
+          Dashboard
+          </Link>
         ) : null}
-        <DropdownMenuItem onClick={() => signOut()}>Sign Out</DropdownMenuItem>
+        <DropdownMenuItem className="w-full flex justify-center" onClick={() => signOut()}>Sign Out</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
