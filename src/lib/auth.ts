@@ -91,7 +91,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             token.name = existingUser.name;
             token.email = existingUser.email;
             token.role = existingUser.role;
-            token.firstname = existingUser.firstName
+            token.firstName = existingUser.firstName
             token.picture = existingUser?.image;
             return token;
         },
@@ -106,7 +106,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     email: token.email,
                     role: token.role,
                     image: token.picture,
-                    firstname: token.firstname,
+                    firstName: token.firstName,
                     money: token.money,
                     isOauth: token.isOauth,
                 },

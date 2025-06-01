@@ -70,7 +70,39 @@ export const ShortenerSchema = z.object({
             message: "The name must be at least 3 characters long",
 
         }),
-        author: z
+    author: z
+        .string()
+        .nonempty({
+            message: "The uuid must not be empty",
+        })
+        .min(3, {
+            message: "The uuid must be at least 3 characters long",
+
+        }),
+})
+
+export const ShortenerUpdateSchema = z.object({
+    original: z
+        .string()
+        .includes("https://", { message: "Must include https://" })
+        .nonempty({
+            message: "The link must not be empty",
+        })
+        .min(3, {
+            message: "The name must be at least 3 characters long",
+
+        })
+        .optional(),
+    uuid: z
+        .string()
+        .nonempty({
+            message: "The link must not be empty",
+        })
+        .min(3, {
+            message: "The name must be at least 3 characters long",
+
+        }),
+    owner: z
         .string()
         .nonempty({
             message: "The uuid must not be empty",

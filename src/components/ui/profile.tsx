@@ -4,7 +4,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -49,16 +48,24 @@ export default function Profile() {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
-          <AvatarImage src={`${session?.user.image}`} alt="@shadcn" />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarImage src={`${session?.user.image}`} />
+          <AvatarFallback>SH</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
+      <DropdownMenuContent
+        align="end"
+        className="flex flex-col items-center text-center w-[16rem] pb-2"
+      >
+        <div className="pt-2">
+          {session?.user.firstName} {session?.user.name}
+        </div>
+        <div>{session.user.email}</div>
+        <DropdownMenuSeparator className="w-full" />
+        {session.user.role == "Owner_shorta" ? (
+         <DropdownMenuItem className="w-full flex justify-center">
+          DashBoard
+        </DropdownMenuItem>
+        ) : null}
         <DropdownMenuItem onClick={() => signOut()}>Sign Out</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

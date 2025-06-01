@@ -5,6 +5,7 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
 }
 
 model User {
@@ -19,7 +20,6 @@ model User {
   emailVerified DateTime?
   accounts      Account[]
   sessions      Session[]
-  link          Json
   Authenticator Authenticator[]
 
   createdAt DateTime @default(now())
