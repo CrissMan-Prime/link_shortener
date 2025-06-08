@@ -81,7 +81,7 @@ export async function GET() {
         return NextResponse.json(link);
     } catch {
         return NextResponse.json(
-            { error: "Failed to fetch user" },
+            { error: "Failed to fetch link" },
             { status: 500 }
         )
     };

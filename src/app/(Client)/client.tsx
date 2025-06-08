@@ -197,7 +197,7 @@ export default function Client() {
                   navigator.clipboard.writeText(link);
                   toast.success("Success ", {
                     description:
-                      `the link has been copied ` +
+                      `The link has been copied ` +
                       `${process.env.NEXT_PUBLIC_DOMAIN}/${names}`,
                   });
                 }}
@@ -220,7 +220,7 @@ export default function Client() {
                 onClick={() => {
                   navigator.clipboard.writeText(original);
                   toast.success("Success ", {
-                    description: `the link has been copied `,
+                    description: `The link has been copied `,
                   });
                 }}
               >

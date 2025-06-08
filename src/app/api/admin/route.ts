@@ -84,7 +84,6 @@ export async function GET() {
                 { status: 400 }
             )
         };
-        console.log(400)
         return NextResponse.json(link);
     } catch {
         return NextResponse.json(

@@ -5,9 +5,9 @@ export const RegisterSchema = z.object({
     email: z
         .string()
         .nonempty({
-            message: "The email must not be empty",
+            message: "The input must not be empty",
         })
-        .max(64, { message: "Your email is too long, the limit is 64 letters." })
+        .max(40, { message: "Your email is too long, the limit is 40 letters." })
         .email({
             message: "Please add a valid email",
         })
