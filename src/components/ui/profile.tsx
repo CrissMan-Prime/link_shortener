@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useEffect, useState } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
+import { AiOutlineLoading } from "react-icons/ai";
 import Link from "next/link";
 
 export default function Profile() {
@@ -28,7 +28,7 @@ export default function Profile() {
   if (loading) {
     return (
       <div className=" flex flex-row basis-1/11 justify-start h-[80px] items-center pr-5">
-        <Skeleton className="h-12 w-12 rounded-full" />
+        <AiOutlineLoading className="flex animate-spin" size={25} />
       </div>
     );
   }

@@ -48,14 +48,7 @@ export default function Client() {
   const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
   const [update, setUpdate] = useState(false);
-  const [dataLink, setDataLink] = useState<
-    {
-      original: string;
-      shorta: string;
-      owner: string;
-      uuid: string;
-    }[]
-  >([]);
+  const [dataLink, setDataLink] = useState<ShortaType[]>([]);
 
   const form = useForm<z.infer<typeof ShortenerSchema>>({
     resolver: zodResolver(ShortenerSchema),
@@ -170,12 +163,7 @@ export default function Client() {
     fetchLink();
   }, [loading]);
 
-  const columns: ColumnDef<{
-    original: string;
-    shorta: string;
-    owner: string;
-    uuid: string;
-  }>[] = [
+  const columns: ColumnDef<ShortaType>[] = [
        {
         accessorKey: "uuid",
         header: () => <p className="text-start">UUID</p>,

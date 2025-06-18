@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/ui/navbar";
 
 export default function RootLayout({
   children,
@@ -12,10 +12,6 @@ export default function RootLayout({
       </div>
 
       <div className="w-full h-[84%]">{children}</div>
-
-      <div className="w-full h-[8%]">
-
-      </div>
     </main>
   );
 }

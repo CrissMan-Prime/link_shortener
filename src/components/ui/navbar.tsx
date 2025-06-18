@@ -1,7 +1,7 @@
 "use client";
 
-import Profile from "./ui/profile";
-import { ModeToggle } from "./ui/theme-toggle";
+import Profile from "./profile";
+import { ModeToggle } from "./theme-toggle";
 export default function Navbar() {
 
 

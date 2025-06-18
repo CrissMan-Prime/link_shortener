@@ -38,16 +38,28 @@ export default function Client() {
 
   const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
     try {
-      await signIn("credentials", {
+      const result = await signIn("credentials", {
+        redirect: false,
         email: data.email,
         password: data.password,
       });
+      if (result?.error) {
+        toast.error("Error", {
+          description: "Please try again",
+        });
+      } else {
+        toast.success("Success", {
+          description: result.ok,
+        });
+        window.location.href = "/";
+      }
     } catch (err) {
       toast.error("Internal Error", {
         description: `${err}`,
       });
     }
   };
+  
   if(session) {
     redirect("/")
   }

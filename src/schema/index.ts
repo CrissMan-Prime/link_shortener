@@ -10,8 +10,7 @@ export const RegisterSchema = z.object({
         .max(40, { message: "Your email is too long, the limit is 40 letters." })
         .email({
             message: "Please add a valid email",
-        })
-        .includes("gmail.com", { message: "Must include gmail.com" }),
+        }),
     firstName: z
         .string()
         .nonempty({
